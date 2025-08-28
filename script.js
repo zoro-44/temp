@@ -13,45 +13,41 @@ gen.addEventListener('click',()=>{
         len = 8;
     }
     let genpass="";
+    let totalString="";
     const cap = document.getElementById('cap').checked;
     const small = document.getElementById('small').checked;
     const num = document.getElementById('num').checked;
     const sym = document.getElementById('sym').checked;
 
-    if(cap && small){
-        let temp="";
-        for(let i=0;i<len;i++){
-            temp += String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        }
-        genpass=temp;
-    }else if(cap){
-        let temp="";
-        for(let i=0;i<len;i++){
-            temp += String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        }
-        genpass=temp;
-    }else if(small){
-        let temp="";
-        for(let i=0;i<len;i++){
-            temp += String.fromCharCode(97 + Math.floor(Math.random() * 26));
-        }
-        genpass=temp;
-    }else if(num){
-        let temp="";
-        for(let i=0;i<len;i++){
-            temp += String.fromCharCode(48 + Math.floor(Math.random() * 10));
-        }
-        genpass=temp;
-    }else if(sym){
-        let temp="";
-        for(let i=0;i<len;i++){
-            temp += String.fromCharCode(33 + Math.floor(Math.random() * 15));
-        }
-        genpass=temp;
-    }else{
-        genpass = "check atleast 1 box";
+    const smallString = "asdfghjklqwertyuiopzxcvbnm";
+    const capString = "ASDFRGTHJKLQWERTYUIOPZXCVBNM";
+    const numString = "1234567890";
+    const symString = "~!@#$%^&*()_+<>?,./\][{}";
+    if(small){
+        genpass += smallString[Math.floor(Math.random()*smallString.length)];
+        totalString+=smallString;
+        len--;
+    }
+    if(cap){
+        genpass += capString[Math.floor(Math.random()*capString.length)];
+        totalString+=capString;
+        len--;
+    }
+    if(num){
+        genpass += numString[Math.floor(Math.random()*numString.length)];
+        totalString+=numString;
+        len--;
+    }
+    if(sym){
+        genpass += symString[Math.floor(Math.random()*symString.length)];
+        totalString+=symString;
+        len--;
     }
 
+    for(let i=0;i<len;i++){
+        genpass+=totalString[Math.floor(Math.random()*totalString.length)];
+    }
+    
     password = genpass;
     output.innerText = password;
 })
