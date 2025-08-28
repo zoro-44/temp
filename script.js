@@ -6,6 +6,10 @@ let password = "no password";
 gen.addEventListener('click',()=>{
     const val = document.getElementById('len').value;
     const n = Number(val);
+    if(n>20){
+        alert("length is too long");
+        return;
+    }
     let len = 8;
     if(Number.isInteger(n) && n>0){
         len = n;
@@ -23,6 +27,10 @@ gen.addEventListener('click',()=>{
     const capString = "ASDFRGTHJKLQWERTYUIOPZXCVBNM";
     const numString = "1234567890";
     const symString = "~!@#$%^&*()_+<>?,./\][{}";
+    if(!small && !cap && !num && !sym){
+        alert("select atleast one character type");
+        return;
+    }
     if(small){
         genpass += smallString[Math.floor(Math.random()*smallString.length)];
         totalString+=smallString;
